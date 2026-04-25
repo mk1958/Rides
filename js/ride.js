@@ -1,11 +1,11 @@
 /*global WildRydes _config*/
 
-var WildRydes = window.WildRydes || {};
-WildRydes.map = WildRydes.map || {};
+var Ride With Me = window.Ride With Me || {};
+Ride With Me.map = Ride With Me.map || {};
 
 (function rideScopeWrapper($) {
     var authToken;
-    WildRydes.authToken.then(function setAuthToken(token) {
+    Ride With Me.authToken.then(function setAuthToken(token) {
         if (token) {
             authToken = token;
         } else {
@@ -56,9 +56,9 @@ WildRydes.map = WildRydes.map || {};
     // Register click handler for #request button
     $(function onDocReady() {
         $('#request').click(handleRequestClick);
-        $(WildRydes.map).on('pickupChange', handlePickupChanged);
+        $(Ride With Me.map).on('pickupChange', handlePickupChanged);
 
-        WildRydes.authToken.then(function updateAuthMessage(token) {
+        Ride With Me.authToken.then(function updateAuthMessage(token) {
             if (token) {
                 displayUpdate('You are authenticated. Click to see your <a href="#authTokenModal" data-toggle="modal">auth token</a>.');
                 $('.authToken').text(token);
@@ -77,28 +77,28 @@ WildRydes.map = WildRydes.map || {};
     }
 
     function handleRequestClick(event) {
-        var pickupLocation = WildRydes.map.selectedPoint;
+        var pickupLocation = Ride With Me.map.selectedPoint;
         event.preventDefault();
         requestUnicorn(pickupLocation);
     }
 
     function animateArrival(callback) {
-        var dest = WildRydes.map.selectedPoint;
+        var dest = Ride With Me.map.selectedPoint;
         var origin = {};
 
-        if (dest.latitude > WildRydes.map.center.latitude) {
-            origin.latitude = WildRydes.map.extent.minLat;
+        if (dest.latitude > Ride With Me.map.center.latitude) {
+            origin.latitude = Ride With Me.map.extent.minLat;
         } else {
-            origin.latitude = WildRydes.map.extent.maxLat;
+            origin.latitude = Ride With Me.map.extent.maxLat;
         }
 
-        if (dest.longitude > WildRydes.map.center.longitude) {
-            origin.longitude = WildRydes.map.extent.minLng;
+        if (dest.longitude > Ride With Me.map.center.longitude) {
+            origin.longitude = Ride With Me.map.extent.minLng;
         } else {
-            origin.longitude = WildRydes.map.extent.maxLng;
+            origin.longitude = Ride With Me.map.extent.maxLng;
         }
 
-        WildRydes.map.animate(origin, dest, callback);
+        Ride With Me.map.animate(origin, dest, callback);
     }
 
     function displayUpdate(text) {
