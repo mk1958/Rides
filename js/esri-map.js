@@ -1,7 +1,7 @@
-/*global WildRydes _config*/
+/*global Ride With Me _config*/
 
-var WildRydes = window.WildRydes || {};
-WildRydes.map = WildRydes.map || {};
+var Ride With Me = window.Ride With Me || {};
+Ride With Me.map = Ride With Me.map || {};
 
 (function esriMapScopeWrapper($) {
     require([
@@ -18,7 +18,7 @@ WildRydes.map = WildRydes.map || {};
         Graphic, Point, TextSymbol,
         PictureMarkerSymbol, webMercatorUtils
     ) {
-        var wrMap = WildRydes.map;
+        var wrMap = Ride With Me.map;
 
         var map = new Map({ basemap: 'gray-vector' });
 
