@@ -1,6 +1,6 @@
 # AWS Project - Build a Full End-to-End Web Application with 7 Services | Step-by-Step Tutorial
 
-This repo contains the code files used in this [YouTube video](https://youtu.be/K6v6t5z6AsU).
+This repo contains the code files 
 
 ## TL;DR
 We're creating a web application for a unicorn ride-sharing service called Wild Rydes (from the original [Amazon workshop](https://aws.amazon.com/serverless-workshops)).  The app uses IAM, Amplify, Cognito, Lambda, API Gateway and DynamoDB, with code stored in GitHub and incorporated into a CI/CD pipeline with Amplify.
@@ -15,6 +15,124 @@ The application code is here in this repository.
 
 ## The Lambda Function Code
 Here is the code for the Lambda function, originally taken from the [AWS workshop](https://aws.amazon.com/getting-started/hands-on/build-serverless-web-app-lambda-apigateway-s3-dynamodb-cognito/module-3/ ), and updated for Node 20.x:
+
+
+🚀 AWS Serverless Project: Ride-Sharing Web Application
+📌 Project Overview
+
+This project demonstrates the design and implementation of a scalable, serverless ride-sharing web application using core AWS services. The application allows users to sign up, log in, and request rides through an interactive interface.
+
+It follows a modern cloud-native architecture, eliminating the need for server management while ensuring high availability, security, and scalability.
+
+🧩 AWS Services Used
+
+1) AWS Amplify – Frontend hosting & CI/CD
+2) Amazon Cognito – User authentication (signup/login)
+3) AWS Lambda – Backend logic execution
+4) Amazon API Gateway – API exposure
+5) Amazon DynamoDB – Data storage
+6) AWS IAM – Access control
+ 
+ 
+ 🏗️ Architecture Overview
+User → Frontend (Amplify)
+     → Cognito (Authentication)
+     → API Gateway
+     → Lambda Function
+     → DynamoDB
+
+
+⚙️ Step-by-Step Implementation
+🔹 Step 1: Frontend Deployment (Amplify)
+Upload your frontend code (HTML, CSS, JS) to GitHub
+Connect repository to AWS Amplify
+Enable automatic deployment (CI/CD)
+
+👉 Result:
+
+Your web app is hosted and accessible via a public URL
+
+🔹 Step 2: User Authentication (Cognito)
+Create a User Pool
+Enable:
+Email-based signup/login
+OTP verification
+Create an App Client
+
+👉 Flow:
+
+User → Signup (Email)
+     → Verify OTP
+     → Login
+     → Receive JWT Token
+
+     
+🔹 Step 3: Create DynamoDB Table
+Table Name: Rides
+Primary Key: RideId (String)
+
+👉 Stores:
+
+Ride ID
+Username
+Ride details
+Timestamp
+
+
+🔹 Step 4: Backend Logic (Lambda)
+📌 Purpose
+
+Handles ride requests and stores them in DynamoDB.
+
+🔹 Key Responsibilities
+Validate user authentication
+Generate unique ride ID
+Assign a ride (unicorn/vehicle)
+Store ride data
+
+🔹 Step 5: API Gateway Integration
+Create REST API
+Add POST endpoint: /ride
+Connect to Lambda
+Enable:
+CORS
+Cognito Authorizer
+
+👉 Flow:
+
+Frontend → API Gateway → Lambda → DynamoDB
+🔹 Step 6: Secure API with Cognito
+Configure Cognito Authorizer
+Attach to /ride endpoint
+
+👉 Ensures:
+
+Only authenticated users can access API
+
+
+🔹 Step 7: IAM Role Configuration
+Create role for Lambda
+Attach permissions:
+DynamoDB access
+
+
+
+Step 8: Testing the Application
+Sample Request:
+{
+  "PickupLocation": {
+    "Latitude": 47.6174,
+    "Longitude": -122.2883
+  }
+}
+Expected Response:
+{
+  "RideId": "abc123",
+  "Unicorn": {...},
+  "Eta": "30 seconds",
+  "Rider": "username"
+}
+
 
 ```node
 import { randomBytes } from 'crypto';
